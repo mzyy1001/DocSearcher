@@ -10,6 +10,21 @@ import requests, webview, os, signal
 PORT = 8501                 # Streamlit 默认端口
 URL  = f"http://localhost:{PORT}"
 
+def ensure_requirements(require_file="requirements.txt"):
+    if not os.path.exists(require_file):
+        return
+    missing = []
+    with open(require_file, encoding="utf-8") as f:
+        for line in f:
+            pkg = line.strip().split("==")[0]
+            if pkg and not importlib.util.find_spec(pkg.replace("-", "_")):
+                missing.append(pkg)
+    if missing:
+        print(f"📦 正在安装缺失依赖：{', '.join(missing)}")
+        subprocess.check_call(
+            [sys.executable, "-m", "pip", "install", *missing]
+        )
+
 def run_streamlit():
     # 启动 Streamlit，设置 headless / 禁用自动浏览器
     cmd = [
@@ -31,6 +46,8 @@ def wait_until_alive(url, timeout=30):
     return False
 
 def main():
+    
+    ensure_requirements()
     # 1️⃣ 启动后台 Streamlit
     p = run_streamlit()
 
