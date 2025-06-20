@@ -1,0 +1,6 @@
+.env
+/data
+/models
+/vector_store
+/venv
+
