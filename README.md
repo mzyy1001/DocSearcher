@@ -9,7 +9,7 @@
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/yourusername/DocSearcher.git
+git clone https://github.com/mzyy1001/DocSearcher.git
 cd DocSearcher
 ```
 
