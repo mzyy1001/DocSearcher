@@ -24,7 +24,7 @@ python3 -m venv venv
 - **macOS / Linux：**
 
 ```bash
-source vnev/bin/activate
+source venv/bin/activate
 ```
 
 ### 4. 安装依赖
